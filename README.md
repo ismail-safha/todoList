@@ -7,7 +7,8 @@ A modern and responsive Todo List application built with:
 - **Tailwind CSS**
 - **REST API (CRUD)**
 
-![Todo App Screenshot](./screencapture-localhost-3000-2025-06-01-01_23_10.png)
+
+![screencapture-localhost-3000-2025-06-01-01_23_10](https://github.com/user-attachments/assets/018fa270-47ac-4862-bdd3-27c3a1c2487d)
 
 ---
 
