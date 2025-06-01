@@ -31,15 +31,22 @@ A modern and responsive Todo List application built with:
 
 ---
 
-# 1. Install dependencies
+## 📂 Installation & Setup
 
-npm install
+```bash
+# Clone the repository
+git clone https://github.com/ismail-safha/todoList.git
 
-# 2. Set up the DB
 
-npx prisma generate
-npx prisma migrate dev --name init
+# Install dependencies
+yarn install  # or npm install
 
-# 3. Run the dev server
+# Set up environment variables
+cp .env.example .env
 
-npm run dev
+# Run database migrations
+npx prisma migrate dev
+
+# Start the development server
+yarn dev  # or npm run dev
+```
