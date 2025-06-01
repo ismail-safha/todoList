@@ -6,6 +6,7 @@ A modern and responsive Todo List application built with:
 - **Prisma ORM**
 - **Tailwind CSS**
 - **REST API (CRUD)**
+- **PostgreSQL Neon DB**
 
 ![Todo App Screenshot](./screencapture-localhost-3000-2025-06-01-01_23_10.png)
 
@@ -28,17 +29,22 @@ A modern and responsive Todo List application built with:
 | **Prisma**       | Type-safe ORM for DB access |
 | **Tailwind CSS** | Utility-first CSS framework |
 
----
+## 📂 Installation & Setup
 
-# 1. Install dependencies
+```bash
+# Clone the repository
+git clone https://github.com/ismail-safha/todoList.git
 
-npm install
 
-# 2. Set up the DB
+# Install dependencies
+yarn install  # or npm install
 
-npx prisma generate
-npx prisma migrate dev --name init
+# Set up environment variables
+cp .env.example .env
 
-# 3. Run the dev server
+# Run database migrations
+npx prisma migrate dev
 
-npm run dev
+# Start the development server
+yarn dev  # or npm run dev
+```
