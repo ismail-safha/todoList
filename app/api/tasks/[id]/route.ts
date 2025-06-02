@@ -1,37 +1,36 @@
 import { prisma } from "@/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
-// Type definition for route parameters
-type Params = {
-  params: {
-    id: string;
-  };
-};
-
-// DELETE /api/tasks/[id]
-// Deletes a task based on the given ID
-export async function DELETE(
-  req: NextRequest,
-  { params }: { params: { id: string } }
-) {
-  const todo = await prisma.task.delete({
-    where: { id: Number(params.id) },
-  });
-  return NextResponse.json(todo);
-}
-
-// PATCH /api/tasks/[id]
-// Updates the 'done' status of a task
+//Updates the 'done' status of a task
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
-  const { done } = await req.json(); // Get updated value
+  const params = await context.params; // <-- await here!
+  const { id } = params;
 
-  const todo = await prisma.task.update({
-    where: { id: Number(params.id) },
-    data: { done }, // use the provided value
+  const body = await req.json();
+  const { done } = body;
+
+  const updatedTask = await prisma.task.update({
+    where: { id: Number(id) },
+    data: { done },
   });
 
-  return NextResponse.json(todo);
+  return NextResponse.json(updatedTask);
+}
+
+// DELETE: delete task by id
+export async function DELETE(
+  req: NextRequest,
+  context: { params: Promise<{ id: string }> }
+) {
+  const params = await context.params;
+  const { id } = params;
+
+  const deletedTask = await prisma.task.delete({
+    where: { id: Number(id) },
+  });
+
+  return NextResponse.json(deletedTask);
 }
